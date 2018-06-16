@@ -1,4 +1,42 @@
-analyse_test(X) :- split_string(X," ","",L), ph(L,[]).
+/* DICTIONNAIRE */
+
+
+adj_rad(X) :- member(X,["joli",
+                        "grand",
+                        "petit"
+                       ]).
+
+
+art_d(X,m,s) :- member(X,["le","un"]).
+art_d(X,f,s) :- member(X,["la","une"]).
+art_d(X,_,p) :- member(X,["les","des"]).
+
+prep_d(X) :- member(X,["dans",
+                       "par",
+                       "avec",
+                       "sur"
+                      ]).
+
+nom_fs(X) :- member(X,["femme",
+                       "chienne",
+                       "chatte"
+                      ]).
+
+nom_ms(X) :- member(X,["homme",
+                       "chien",
+                       "chat"
+                      ]).
+
+
+verbe_rad(X) :- member(X,["regard",
+                          "mont",
+                          "gard",
+                          "frapp",
+                          "lav",
+                          "caress"
+                         ]).
+/* MAIN FUNCTION */
+analyse(X) :- split_string(X," ","",L), ph(L,[]).
 
 /* PHRASE */
 ph(P,R) :- write("ph("),gn(P,S,G,N), conv_GN_PP(G,N,PP), gv(S,R,PP),write(")").
@@ -55,7 +93,7 @@ att([X|Z],Z,G,N) :- write(" att("),adj(X,G,N),write(")").
 att(P,R,G,N) :- write(" att("),sn(P,R,G,N),write(")").
 
 /* COI */
-coi(["à"|Z],R,G,N) :- write(" coi( 'à' "),sn(Z,R,G,N),write(")").
+coi(["Ã "|Z],R,G,N) :- write(" coi( 'Ã ' "),sn(Z,R,G,N),write(")").
 
 /* CCIRC */
 ccirc([X|Z],R,G,N) :- write(" ccirc("),prep(X), sn(Z,R,G,N),write(")").
@@ -95,44 +133,6 @@ switch_art("une",_,p,"des").
 
 switch_art("des",f,s,"une").
 switch_art("des",m,s,"un").
-
-/* DICTIONNAIRE */
-
-
-adj_rad(X) :- member(X,["joli",
-                        "grand",
-                        "petit"
-                       ]).
-
-
-art_d(X,m,s) :- member(X,["le","un"]).
-art_d(X,f,s) :- member(X,["la","une"]).
-art_d(X,_,p) :- member(X,["les","des"]).
-
-prep_d(X) :- member(X,["dans",
-                       "par",
-                       "avec",
-                       "sur"
-                      ]).
-
-nom_fs(X) :- member(X,["femme",
-                       "chienne",
-                       "chatte"
-                      ]).
-
-nom_ms(X) :- member(X,["homme",
-                       "chien",
-                       "chat"
-                      ]).
-
-
-verbe_rad(X) :- member(X,["regard",
-                          "mont",
-                          "gard",
-                          "frapp",
-                          "lav",
-                          "caress"
-                         ]).
 
 /* CONJUGAISON */
 
