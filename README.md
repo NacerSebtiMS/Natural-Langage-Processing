@@ -9,7 +9,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 You'll need to install SWI-Prolog.
-Once done, launch Prolog go to File > Consult then search for the NPL.pl file.
+Once done, launch Prolog go to File > Consult then search for main.pl file.
 
 ## Running the tests
 
@@ -52,21 +52,24 @@ Here there was an attempt to correct the sentence, but it failed, so the program
 ## Change the dictionnary
 
 My program doesn't have a rich dictionary, but you can add your own words.
+The file is in modules and is named dict.pl
 For example, if you want to add an adjective change this :
 
 ```
-adj_rad(X) :- member(X,["joli",
-                        "grand",
-                        "petit"
-                       ]).
+adj_rad(X) :- member(X,[
+"joli",
+"grand",
+"petit"
+]).
 ```
 to this :
 ```
-adj_rad(X) :- member(X,["joli",
-                        "grand",
-                        "petit",
-                        "ravissant"
-                       ]).
+adj_rad(X) :- member(X,[
+"joli",
+"grand",
+"petit",
+"ravissant"
+]).
 ```
 The same goes for names where you have to put then in the feminine and masculine form.
 For verbs you have to put the radical for example : 'jouer' becomes 'jou'
